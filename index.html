@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#07060e">
+  <title>Day Streak</title>
+  <link rel="icon" href="assets/flame.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app" id="app">
+    <div class="stage">
+
+      <!-- ===== Hero: streak number, flame, cat ===== -->
+      <section class="hero" aria-label="Current streak">
+        <div class="stars" id="stars" aria-hidden="true"></div>
+
+        <img class="flame" id="flame" src="assets/flame.png" alt="" width="170" height="210">
+
+        <h1 class="streak-line">
+          <span class="streak-number" id="streakNumber">0</span>
+          <span class="streak-label">Day Streak</span>
+        </h1>
+
+        <p class="subtitle">
+          <span id="subtitle">Keep going, legend!</span>
+          <img class="sparkle" src="assets/sparkle.png" alt="" width="75" height="65">
+        </p>
+
+        <img class="cat" src="assets/cat.png" alt="A black pixel-art cat sleeping, dreaming of a heart" width="540" height="364">
+      </section>
+
+      <!-- ===== Dashboard: calendar + longest streak ===== -->
+      <div class="frame frame--shelf">
+        <section class="panel" aria-label="Streak calendar">
+          <div class="panel-body">
+
+            <div class="card calendar">
+              <header class="cal-head">
+                <div class="cal-nav">
+                  <button type="button" class="nbtn" id="prevYear" aria-label="Previous year">&laquo;</button>
+                  <button type="button" class="nbtn" id="prevMonth" aria-label="Previous month">&lsaquo;</button>
+                  <h2 class="month-title" id="monthTitle" aria-live="polite">Month</h2>
+                  <button type="button" class="nbtn" id="nextMonth" aria-label="Next month">&rsaquo;</button>
+                  <button type="button" class="nbtn" id="nextYear" aria-label="Next year">&raquo;</button>
+                </div>
+                <button type="button" class="today-btn" id="todayBtn">Today</button>
+              </header>
+
+              <div class="weekdays" id="weekdays" aria-hidden="true">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+
+              <div class="grid" id="grid" role="group" aria-label="Days of the month"></div>
+
+              <ul class="legend" aria-label="Legend">
+                <li><span class="lg lg-done"></span>Completed</li>
+                <li><span class="lg lg-today"></span>Today</li>
+                <li><span class="lg lg-missed"></span>Missed</li>
+                <li><span class="lg lg-future"></span>Upcoming</li>
+              </ul>
+            </div>
+
+            <div class="card longest">
+              <img class="trophy" src="assets/trophy.png" alt="" width="140" height="100">
+              <p class="longest-text">Longest Streak: <strong id="longest">0</strong> <span id="longestUnit">Days</span></p>
+              <div class="divider" aria-hidden="true"></div>
+              <p class="fire-msg"><span id="fireMsg">You’re on fire!</span><img class="fire" id="fire" src="assets/fire.png" alt="" width="65" height="65"></p>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- ===== Monthly progress ===== -->
+      <div class="frame frame--flat">
+        <section class="panel" aria-labelledby="progTitle">
+          <div class="panel-body">
+            <div class="card progress-card">
+              <div class="prog-top">
+                <h2 class="prog-title" id="progTitle">Monthly Progress</h2>
+                <span class="prog-month" id="progMonth">Month</span>
+              </div>
+              <div class="prog-main">
+                <strong class="prog-percent" id="progPercent">0%</strong>
+                <span class="prog-count" id="progCount">0 / 30 days</span>
+              </div>
+              <div class="bar" id="bar" role="progressbar" aria-labelledby="progTitle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="bar-fill" id="barFill"></div>
+                <span class="tick" style="left:25%"></span><span class="tick" style="left:50%"></span><span class="tick" style="left:75%"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <p class="notice" id="storageWarn" role="status" hidden>Your browser is blocking storage, so progress can’t be saved after you close this page.</p>
+    </div>
+  </main>
+
+  <!-- ===== Mood popup ===== -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dlgTitle" aria-describedby="dlgNote">
+      <button type="button" class="dlg-close" id="dlgClose" aria-label="Close without completing">&times;</button>
+      <h2 class="dlg-title" id="dlgTitle">How was your day?</h2>
+      <p class="dlg-date" id="dlgDate"></p>
+      <div class="moods" id="moods" role="group" aria-label="Choose a mood"></div>
+      <p class="dlg-note" id="dlgNote">Picking a mood completes this day. Completed days are locked and can’t be changed.</p>
+    </div>
+  </div>
+
+  <div class="sr-only" id="live" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
